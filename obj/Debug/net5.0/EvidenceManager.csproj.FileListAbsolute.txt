@@ -1,0 +1,16 @@
+F:\Programmering\C#\EvidenceManager\bin\Debug\net5.0\EvidenceManager.exe
+F:\Programmering\C#\EvidenceManager\bin\Debug\net5.0\EvidenceManager.deps.json
+F:\Programmering\C#\EvidenceManager\bin\Debug\net5.0\EvidenceManager.runtimeconfig.json
+F:\Programmering\C#\EvidenceManager\bin\Debug\net5.0\EvidenceManager.runtimeconfig.dev.json
+F:\Programmering\C#\EvidenceManager\bin\Debug\net5.0\EvidenceManager.dll
+F:\Programmering\C#\EvidenceManager\bin\Debug\net5.0\ref\EvidenceManager.dll
+F:\Programmering\C#\EvidenceManager\bin\Debug\net5.0\EvidenceManager.pdb
+F:\Programmering\C#\EvidenceManager\obj\Debug\net5.0\EvidenceManager.csprojAssemblyReference.cache
+F:\Programmering\C#\EvidenceManager\obj\Debug\net5.0\EvidenceManager.GeneratedMSBuildEditorConfig.editorconfig
+F:\Programmering\C#\EvidenceManager\obj\Debug\net5.0\EvidenceManager.AssemblyInfoInputs.cache
+F:\Programmering\C#\EvidenceManager\obj\Debug\net5.0\EvidenceManager.AssemblyInfo.cs
+F:\Programmering\C#\EvidenceManager\obj\Debug\net5.0\EvidenceManager.csproj.CoreCompileInputs.cache
+F:\Programmering\C#\EvidenceManager\obj\Debug\net5.0\EvidenceManager.dll
+F:\Programmering\C#\EvidenceManager\obj\Debug\net5.0\ref\EvidenceManager.dll
+F:\Programmering\C#\EvidenceManager\obj\Debug\net5.0\EvidenceManager.pdb
+F:\Programmering\C#\EvidenceManager\obj\Debug\net5.0\EvidenceManager.genruntimeconfig.cache
