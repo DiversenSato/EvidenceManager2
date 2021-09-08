@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 
-namespace EvidenceManager {
+namespace EvidenceManager2 {
     class Program {
         static void Main(string[] args) {
             string[] Evidences = {"EMF 5", "Spirit Box", "Fingerprints", "Ghost Orb", "Ghost Writing", "Freezing Temperatures", "D.O.T.S."};
