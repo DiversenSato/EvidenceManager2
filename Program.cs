@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Text;
 
 namespace EvidenceManager {
     class Program {
@@ -47,15 +48,56 @@ namespace EvidenceManager {
                 int NewEvi = 0;
                 bool success = int.TryParse(Input, out NewEvi);
                 if (success) {
-                    if (NewEvi > 0 && NewEvi <= Evidences.Length) {
-                        
+                    if (NewEvi >= 1 && NewEvi <= Evidences.Length) {
+                        isInvalid = false;
+                        bool deleted = false;
+                        for (int c = 0; c < Confirmed.Length; c++) {
+                            if (Confirmed[c] == NewEvi-1) {
+                                Confirmed[c] = -1;
+                                deleted = true;
+                                break;
+                            }
+                        }
+                        for (int c = 0; c < Confirmed.Length; c++) {
+                            if (!deleted && Confirmed[c] == -1) {
+                                Confirmed[c] = NewEvi-1;
+                                break;
+                            }
+                        }
+                    } else if (NewEvi <= -1 && NewEvi >= -Evidences.Length) {
+                        isInvalid = false;
+                        NewEvi = Math.Abs(NewEvi)-1;
+                        if(Impossible[NewEvi]) {
+                            Impossible[NewEvi] = false;
+                        } else {
+                            Impossible[NewEvi] = true;
+                        }
                     }
+                } else if(Input == "restart") {
+                    isInvalid = false;
+                    for(int c = 0; c < Confirmed.Length; c++) {
+                        Confirmed[c] = -1;
+                    }
+                    for(int c = 0; c < Impossible.Length; c++) {
+                        Impossible[c] = false;
+                    }
+                } else {
+                    isInvalid = true;
                 }
             }
         }
         
         static void DrawGUI() {
-            
+            Console.Clear();
+            MakeLine();
+        }
+
+        static void MakeLine() {
+            for (int i = 0; i < 256; i++) {
+                int Line = i;
+                Console.Write((char)Line);
+            }
+            Console.Write("\n");
         }
     }
 }

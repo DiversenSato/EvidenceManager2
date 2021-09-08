@@ -8,26 +8,24 @@
     "net5.0": []
   },
   "packageFolders": {
-    "C:\\Users\\Daniel\\.nuget\\packages\\": {}
+    "C:\\Users\\diver\\.nuget\\packages\\": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "F:\\Programmering\\C#\\EvidenceManager\\EvidenceManager.csproj",
+      "projectUniqueName": "C:\\Users\\diver\\Documents\\GitHub\\EvidenceManager2\\EvidenceManager.csproj",
       "projectName": "EvidenceManager",
-      "projectPath": "F:\\Programmering\\C#\\EvidenceManager\\EvidenceManager.csproj",
-      "packagesPath": "C:\\Users\\Daniel\\.nuget\\packages\\",
-      "outputPath": "F:\\Programmering\\C#\\EvidenceManager\\obj\\",
+      "projectPath": "C:\\Users\\diver\\Documents\\GitHub\\EvidenceManager2\\EvidenceManager.csproj",
+      "packagesPath": "C:\\Users\\diver\\.nuget\\packages\\",
+      "outputPath": "C:\\Users\\diver\\Documents\\GitHub\\EvidenceManager2\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
-        "C:\\Users\\Daniel\\AppData\\Roaming\\NuGet\\NuGet.Config",
-        "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+        "C:\\Users\\diver\\AppData\\Roaming\\NuGet\\NuGet.Config"
       ],
       "originalTargetFrameworks": [
         "net5.0"
       ],
       "sources": {
-        "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
         "https://api.nuget.org/v3/index.json": {}
       },
       "frameworks": {
@@ -60,7 +58,7 @@
             "privateAssets": "all"
           }
         },
-        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\5.0.104\\RuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\5.0.302\\RuntimeIdentifierGraph.json"
       }
     }
   }
