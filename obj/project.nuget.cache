@@ -1,8 +1,14 @@
 {
   "version": 2,
+<<<<<<< HEAD
   "dgSpecHash": "dFXGq/pFilJvuLB8zFflDO8SRH41VyrQrlhW5StmbpVvpe8p+KrNeHtPUnu0R3xlrUq+jIMRKtHUZAbtMl9rXw==",
   "success": true,
   "projectFilePath": "F:\\Programmering\\C#\\EvidenceManager\\EvidenceManager2.csproj",
+=======
+  "dgSpecHash": "kBG5Ribt2hGP0C+Kpbe98mr7Ocy/FsGE05g55OkERQb9Ji9NeRAQt2SkAYUO4qIphfYWaouDc2j+PqeNCAY9SQ==",
+  "success": true,
+  "projectFilePath": "C:\\Users\\diver\\Documents\\GitHub\\EvidenceManager2\\EvidenceManager.csproj",
+>>>>>>> e619335fef02d831e0386ed96376c137eb5b33d6
   "expectedPackageFiles": [],
   "logs": []
 }
