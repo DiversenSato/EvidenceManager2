@@ -55,7 +55,10 @@ namespace EvidenceManager2 {
         }
         
         static void DrawGUI() {
-            
+            Console.OutputEncoding = System.Text.Encoding.UTF8;
+
+            for (int i = 0; i < 120; i++)
+                Console.Write("\u2550");                      
         }
     }
 }

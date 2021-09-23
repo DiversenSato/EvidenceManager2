@@ -13,9 +13,9 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "F:\\Programmering\\C#\\EvidenceManager\\EvidenceManager.csproj",
-      "projectName": "EvidenceManager",
-      "projectPath": "F:\\Programmering\\C#\\EvidenceManager\\EvidenceManager.csproj",
+      "projectUniqueName": "F:\\Programmering\\C#\\EvidenceManager\\EvidenceManager2.csproj",
+      "projectName": "EvidenceManager2",
+      "projectPath": "F:\\Programmering\\C#\\EvidenceManager\\EvidenceManager2.csproj",
       "packagesPath": "C:\\Users\\Daniel\\.nuget\\packages\\",
       "outputPath": "F:\\Programmering\\C#\\EvidenceManager\\obj\\",
       "projectStyle": "PackageReference",

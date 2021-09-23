@@ -6,15 +6,15 @@
   "compilationOptions": {},
   "targets": {
     ".NETCoreApp,Version=v5.0": {
-      "EvidenceManager/1.0.0": {
+      "EvidenceManager2/1.0.0": {
         "runtime": {
-          "EvidenceManager.dll": {}
+          "EvidenceManager2.dll": {}
         }
       }
     }
   },
   "libraries": {
-    "EvidenceManager/1.0.0": {
+    "EvidenceManager2/1.0.0": {
       "type": "project",
       "serviceable": false,
       "sha512": ""
