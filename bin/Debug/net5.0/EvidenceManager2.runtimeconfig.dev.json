@@ -1,8 +1,0 @@
-{
-  "runtimeOptions": {
-    "additionalProbingPaths": [
-      "C:\\Users\\diver\\.dotnet\\store\\|arch|\\|tfm|",
-      "C:\\Users\\diver\\.nuget\\packages"
-    ]
-  }
-}
