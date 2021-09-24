@@ -130,6 +130,16 @@ namespace EvidenceManager2 {
                     }
                 }
             }
+            for (int e = 0; e < PossibleGhosts.Length; e++) {
+                if (PossibleGhosts[e]) {
+                    for (int c = 0; c < Confirmed.Length; c++) {
+                        if (Confirmed[c] != -1) {
+                            bool hasEvi = false;
+                            
+                        }
+                    }
+                }
+            }
         }
 
         static void MakeLine() {
