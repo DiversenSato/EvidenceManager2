@@ -1,7 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 
 namespace EvidenceManager2 {
     class Program {
@@ -12,8 +10,10 @@ namespace EvidenceManager2 {
         static int[] Confirmed;
         static int PosGhosts;
         static int[] EvidenceOccurances;
-        static List<(string GhostName, List<int> EvidenceList)> GhostTypes;
+        static Ghost[] GhostTypes;
         static void Main(string[] args) {
+            Console.Title = "EvidenceManager2";
+
             Evidences = new string[7] {"EMF 5", "Spirit Box", "Fingerprints", "Ghost Orb", "Ghost Writing", "Freezing Temperatures", "D.O.T.S."};
             PosEvidences = new bool[7] {false, false, false, false, false, false, false};
             Impossible = new bool[7] {false, false, false, false, false, false, false};
@@ -22,24 +22,24 @@ namespace EvidenceManager2 {
             PosGhosts = 0;
             EvidenceOccurances = new int[7] {0, 0, 0, 0, 0, 0, 0};
             
-            GhostTypes = new List<(string GhostName, List<int> EvidenceList)>();
+            GhostTypes = new Ghost[16];
 
-            GhostTypes.Add(("Banshee", new List<int>{2, 3, 6}));
-            GhostTypes.Add(("Demon", new List<int>{2, 4, 5}));
-            GhostTypes.Add(("Goryo", new List<int>{0, 2, 6}));
-            GhostTypes.Add(("Hantu", new List<int>{2, 3, 5}));
-            GhostTypes.Add(("Jinn", new List<int>{0, 2, 5}));
-            GhostTypes.Add(("Mare", new List<int>{1, 3, 4}));
-            GhostTypes.Add(("Myling", new List<int>{0, 2, 4}));
-            GhostTypes.Add(("Oni", new List<int>{0, 5, 6}));
-            GhostTypes.Add(("Phantom", new List<int>{1, 2, 6}));
-            GhostTypes.Add(("Poltergeist", new List<int>{1, 2, 4}));
-            GhostTypes.Add(("Revenant", new List<int>{3, 4, 5}));
-            GhostTypes.Add(("Shade", new List<int>{0, 4, 5}));
-            GhostTypes.Add(("Spirit", new List<int>{0, 1, 4}));
-            GhostTypes.Add(("Wraith", new List<int>{0, 1, 6}));
-            GhostTypes.Add(("Yokai", new List<int>{1, 3, 6}));
-            GhostTypes.Add(("Yurei", new List<int>{3, 5, 6}));
+            GhostTypes[0] = new Ghost("Banshee", 2, 3, 6);
+            GhostTypes[1] = new Ghost("Demon", 2, 4, 5);
+            GhostTypes[2] = new Ghost("Goryo", 0, 2, 6);
+            GhostTypes[3] = new Ghost("Hantu", 2, 3, 5);
+            GhostTypes[4] = new Ghost("Jinn", 0, 2, 5);
+            GhostTypes[5] = new Ghost("Mare", 1, 3, 4);
+            GhostTypes[6] = new Ghost("Myling", 0, 2, 4);
+            GhostTypes[7] = new Ghost("Oni", 0, 5, 6);
+            GhostTypes[8] = new Ghost("Phantom", 1, 2, 6);
+            GhostTypes[9] = new Ghost("Poltergeist", 1, 2, 4);
+            GhostTypes[10] = new Ghost("Revenant", 3, 4, 5);
+            GhostTypes[11] = new Ghost("Shade", 0, 4, 5);
+            GhostTypes[12] = new Ghost("Spirit", 0, 1, 4);
+            GhostTypes[13] = new Ghost("Wraith", 0, 1, 6);
+            GhostTypes[14] = new Ghost("Yokai", 1, 3, 6);
+            GhostTypes[15] = new Ghost("Yurei", 3, 5, 6);
 
             bool isInvalid = false;
             while (true) {
@@ -117,16 +117,74 @@ namespace EvidenceManager2 {
 
             GetGhosts();
             GetEviAmount();
+
+            MakeLine();
+            Console.WriteLine("Possible ghosts:");
+            for(int i = 0; i < PossibleGhosts.Length; i++) {
+                //If the ghost is possible, print it along with non-confirmed evidence
+                if(PossibleGhosts[i]) {
+                    //Print ghost.name + ": "
+                    Console.Write(GhostTypes[i].name + ":");
+                    int nameLength = GhostTypes[i].name.Length + 1;
+                    int curIndent = (int)Math.Ceiling((nameLength/8f));
+                    int tarIndent = 2;
+                    for(int d = 0; d < tarIndent-curIndent; d++) {
+                        Console.Write("\t");
+                    }
+                    
+                    //Loop through every evidence of current ghost and print non confirmed
+                    for(int e = 0; e < GhostTypes[i].values.Length; e++) {
+                        if(!InArr(Confirmed, GhostTypes[i].values[e])) {
+                            Console.Write(Evidences[GhostTypes[i].values[e]] + ",\t");
+                        }
+                    }
+                    Console.WriteLine("\b\b");
+                }
+            }
+
+            MakeLine();
+            Console.WriteLine("Possible remaining evidence:");
+            //Find highest and lowest chance
+            float HChance = 0;
+            float LChance = 1;
+            for(int i = 0; i < PosEvidences.Length; i++) {
+                if(PosEvidences[i]) {
+                    float Chance = (float)EvidenceOccurances[i] / (float)PosGhosts;
+                    if(Chance > HChance) {
+                        HChance = Chance;
+                    } else if(Chance < LChance) {
+                        LChance = Chance;
+                    }
+                }
+            }
+            for(int i = 0; i < PosEvidences.Length; i++) {
+                if(PosEvidences[i]) {
+                    float Chance = (float)EvidenceOccurances[i] / (float)PosGhosts;
+
+                    if(Chance <= HChance) {
+                        Console.ForegroundColor = ConsoleColor.Green;
+                    }
+                    if(Chance <= lerp(LChance, HChance, 0.67f)) {
+                        Console.ForegroundColor = ConsoleColor.Yellow;
+                    }
+                    if(Chance < lerp(LChance, HChance, 0.33f)) {
+                        Console.ForegroundColor = ConsoleColor.Red;
+                    }
+
+                    Console.WriteLine((i+1).ToString() + ". " + Evidences[i] + " " + EvidenceOccurances[i] + "/" + PosGhosts);
+                }
+            }
+            Console.ResetColor();
         }
 
         static void GetGhosts() {
             for (int b = 0; b < PossibleGhosts.Length; b++) {
                 PossibleGhosts[b] = true;
             }
-            foreach (var ghost in GhostTypes) {
-                foreach (int val in ghost.EvidenceList) {
-                    if (Impossible[val]) {
-                        PossibleGhosts[GhostTypes.IndexOf(ghost)] = false;
+            for (int i = 0; i < GhostTypes.Length; i++) {
+                for (int b = 0; b < GhostTypes[i].values.Length; b++) {
+                    if (Impossible[GhostTypes[i].values[b]]) {
+                        PossibleGhosts[i] = false;
                     }
                 }
             }
@@ -135,9 +193,49 @@ namespace EvidenceManager2 {
                     for (int c = 0; c < Confirmed.Length; c++) {
                         if (Confirmed[c] != -1) {
                             bool hasEvi = false;
-                            
+                            for (int g = 0; g < GhostTypes.Length; g++) {
+                                if (GhostTypes[e].values[g] == Confirmed[c]) {
+                                    hasEvi = true;
+                                    break;
+                                }
+                            }
+
+                            if (!hasEvi) {
+                                PossibleGhosts[e] = false;
+                                break;
+                            }
                         }
                     }
+                }
+            }
+
+            PosGhosts = 0;
+            for (int i = 0; i < PossibleGhosts.Length; i++) {
+                if (PossibleGhosts[i]) {
+                    PosGhosts++;
+                }
+            }
+        }
+
+        static void GetEviAmount() {
+            for(int i = 0; i < EvidenceOccurances.Length; i++) {
+                EvidenceOccurances[i] = 0;
+            }
+            for(int i = 0; i < PosEvidences.Length; i++) {
+                PosEvidences[i] = false;
+            }
+
+            for(int i = 0; i < PossibleGhosts.Length; i++) {
+                if(PossibleGhosts[i]) {
+                    for(int j = 0; j < GhostTypes[i].values.Length; j++) {
+                        EvidenceOccurances[GhostTypes[i].values[j]]++;
+                        PosEvidences[GhostTypes[i].values[j]] = true;
+                    }
+                }
+            }
+            for(int c = 0; c < Confirmed.Length; c++) {
+                if(Confirmed[c] != -1) {
+                    PosEvidences[Confirmed[c]] = false;
                 }
             }
         }
@@ -146,7 +244,19 @@ namespace EvidenceManager2 {
             for (int i = 0; i < 120; i++) {
                 Console.Write("\u2550");
             }
-            Console.Write("\n");
+        }
+
+        static bool InArr(int[] arr, int objec) {
+            for (int e = 0; e < arr.Length; e++) {
+                if (arr[e] == objec) {
+                    return true;
+                }
+            }
+            return false;
+        }
+
+        static float lerp(float a, float b, float t) {
+            return (a + t*(b-a));
         }
     }
 }
