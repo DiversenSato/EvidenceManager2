@@ -5,16 +5,24 @@ using System.Text;
 
 namespace EvidenceManager2 {
     class Program {
+        static string[] Evidences;
+        static bool[] PosEvidences;
+        static bool[] Impossible;
+        static bool[] PossibleGhosts;
+        static int[] Confirmed;
+        static int PosGhosts;
+        static int[] EvidenceOccurances;
+        static List<(string GhostName, List<int> EvidenceList)> GhostTypes;
         static void Main(string[] args) {
-            string[] Evidences = {"EMF 5", "Spirit Box", "Fingerprints", "Ghost Orb", "Ghost Writing", "Freezing Temperatures", "D.O.T.S."};
-            bool[] PosEvidences = {false, false, false, false, false, false, false};
-            bool[] Impossible = {false, false, false, false, false, false, false};
-            bool[] PossibleGhosts;
-            int[] Confirmed = {-1, -1, -1};
-            int PosGhosts = 0;
-            int[] EvidenceOccurances = {0, 0, 0, 0, 0, 0, 0};
+            Evidences = new string[7] {"EMF 5", "Spirit Box", "Fingerprints", "Ghost Orb", "Ghost Writing", "Freezing Temperatures", "D.O.T.S."};
+            PosEvidences = new bool[7] {false, false, false, false, false, false, false};
+            Impossible = new bool[7] {false, false, false, false, false, false, false};
+            PossibleGhosts = new bool[16];
+            Confirmed = new int[3] {-1, -1, -1};
+            PosGhosts = 0;
+            EvidenceOccurances = new int[7] {0, 0, 0, 0, 0, 0, 0};
             
-            var GhostTypes = new List<(string GhostName, List<int> EvidenceList)>();
+            GhostTypes = new List<(string GhostName, List<int> EvidenceList)>();
 
             GhostTypes.Add(("Banshee", new List<int>{2, 3, 6}));
             GhostTypes.Add(("Demon", new List<int>{2, 4, 5}));
@@ -89,9 +97,46 @@ namespace EvidenceManager2 {
         
         static void DrawGUI() {
             Console.OutputEncoding = System.Text.Encoding.UTF8;
+            Console.Clear();
+            MakeLine();
 
-            for (int i = 0; i < 120; i++)
+            Console.Write("Confirmed evidence: ");
+            for (int e = 0; e < Confirmed.Length; e++) {
+                if (Confirmed[e] != -1) {
+                    Console.Write(Evidences[Confirmed[e]] + ", ");
+                }
+            }
+            Console.WriteLine("\b\b");
+            Console.Write("Impossible evidence: ");
+            for (int e = 0; e < Impossible.Length; e++) {
+                if (Impossible[e]) {
+                    Console.Write(Evidences[e] + ", ");
+                }
+            }
+            Console.WriteLine("\b\b");
+
+            GetGhosts();
+            GetEviAmount();
+        }
+
+        static void GetGhosts() {
+            for (int b = 0; b < PossibleGhosts.Length; b++) {
+                PossibleGhosts[b] = true;
+            }
+            foreach (var ghost in GhostTypes) {
+                foreach (int val in ghost.EvidenceList) {
+                    if (Impossible[val]) {
+                        PossibleGhosts[GhostTypes.IndexOf(ghost)] = false;
+                    }
+                }
+            }
+        }
+
+        static void MakeLine() {
+            for (int i = 0; i < 120; i++) {
                 Console.Write("\u2550");
+            }
+            Console.Write("\n");
         }
     }
 }
